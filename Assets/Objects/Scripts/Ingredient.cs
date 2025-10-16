@@ -6,6 +6,7 @@ using UnityEngine.XR.Interaction.Toolkit.Interactables;
 public class Ingredient : MonoBehaviour
 {
     public EIngridient ingridientType;
+    public EIngridientState ingridientState;
     private XRGrabInteractable grabInteractable;
     private void Awake()
     {
@@ -16,8 +17,16 @@ public class Ingredient : MonoBehaviour
 
 public enum EIngridient
 {
+    None, 
     Seta,
     Mano,
     Ojo,
-    Baya
+    Baya,
+    Rata
+}
+
+public enum EIngridientState
+{
+    Cocinado = 1<<0,
+    Crudo = 1<<1,
 }
