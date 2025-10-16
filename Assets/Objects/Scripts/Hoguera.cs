@@ -14,7 +14,7 @@ namespace Objects
         public SphereCollider sphereCollider;
         public GameObject sopa;
 
-        private List<EIngridient> _ingridients = new();
+        private List<EIngredient> _ingridients = new();
 
         private void Awake()
         {
@@ -48,9 +48,9 @@ namespace Objects
                 return;
             }
             
-            Debug.Log($"Collision with Pot is {ingredient.ingridientType}");
+            Debug.Log($"Collision with Pot is {ingredient.ingredientType} & {ingredient.ingredientState}");
         
-            _ingridients.Add(ingredient.ingridientType);
+            _ingridients.Add(ingredient.ingredientType);
             
             var grab = other.GetComponent<XRGrabInteractable>();
             if (grab && grab.isSelected)
@@ -67,12 +67,15 @@ namespace Objects
         private void CheckRecipes()
         {
             var Recipes = GameManager.instance?.recipes;
+            Debug.Log("Recipes: " + Recipes);
             foreach (var recipe in Recipes)
             {
                 bool isRecipeDone = recipe.IsSame(_ingridients);
+                Debug.Log($"hola {isRecipeDone}");
                 if (isRecipeDone)
                 {
                     Instantiate(recipe.result, transform.position + Vector3.up, Quaternion.identity);
+                    Debug.Log("Recipe done");
                 }
             }
         }
