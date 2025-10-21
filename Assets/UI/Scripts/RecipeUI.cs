@@ -12,31 +12,39 @@ public class RecipeUI : MonoBehaviour
     public GameObject ingredientImagePrefab;
     public GameObject plusTextPrefab;
     public GameObject equalTextPrefab;
-
+    
+    private List<Image> currentIngredientImages = new List<Image>();
     public void ShowRecipe(List<Sprite> ingredients, Sprite resultSprite)
     {
         foreach (Transform child in ingredientsContainer)
             Destroy(child.gameObject);
+        currentIngredientImages.Clear();
 
-        foreach (Sprite ingredient in ingredients)
+
+        for (int i = 0; i < ingredients.Count; i++)
         {
-            for (int i = 0; i < ingredients.Count; i++)
+
+            GameObject imgObj = Instantiate(ingredientImagePrefab, ingredientsContainer);
+            imgObj.GetComponent<Image>().sprite = ingredients[i];
+
+            if (i < ingredients.Count - 1)
             {
-                
-                GameObject imgObj = Instantiate(ingredientImagePrefab, ingredientsContainer);
-                imgObj.GetComponent<Image>().sprite = ingredients[i];
-                
-                if (i < ingredients.Count - 1)
-                {
-                    Instantiate(plusTextPrefab, ingredientsContainer);
-                }
+                Instantiate(plusTextPrefab, ingredientsContainer);
             }
-            Instantiate(equalTextPrefab, ingredientsContainer);
-            resultImage.sprite = resultSprite;
-        
         }
+
+        Instantiate(equalTextPrefab, ingredientsContainer);
+            resultImage.sprite = resultSprite;
             
-        
+    }
+
+    public void MarkIngredientCooked(int index)
+    {
+        if (index >= 0 && index < currentIngredientImages.Count)
+        {
+            var img = currentIngredientImages[index];
+            img.color = Color.green;
+        }
     }
     void Start()
     {
