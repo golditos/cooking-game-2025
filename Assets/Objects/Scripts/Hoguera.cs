@@ -13,8 +13,8 @@ namespace Objects
         public ParticleSystem fireParticles;
         public SphereCollider sphereCollider;
         public GameObject sopa;
-
-        private List<EIngredient> _ingridients = new();
+        
+        private List<Ingredient.IngredientAll> _ingredients = new();
 
         private void Awake()
         {
@@ -41,16 +41,15 @@ namespace Objects
 
         private void OnTriggerEnter(Collider other)
         {
-            Ingredient ingredient;
+            Ingredient.IngredientAll ingredient;
             if (!other.TryGetComponent(out ingredient))
             {
                 Debug.Log("Collision with Pot is not Ingridient");
                 return;
             }
-            
-            Debug.Log($"Collision with Pot is {ingredient.ingredientType} & {ingredient.ingredientState}");
-        
-            _ingridients.Add(ingredient.ingredientType);
+
+            Debug.Log($"Collision with Pot is {ingredient.Type} & {ingredient.State}");
+            _ingredients.Add(ingredient);
             
             var grab = other.GetComponent<XRGrabInteractable>();
             if (grab && grab.isSelected)
@@ -67,15 +66,35 @@ namespace Objects
         private void CheckRecipes()
         {
             var Recipes = GameManager.instance?.recipes;
+            if (Recipes == null) return;
+            
+            List<RecetaData.RecepieAll> validRecipes = new();
+            
             Debug.Log("Recipes: " + Recipes);
             foreach (var recipe in Recipes)
             {
-                bool isRecipeDone = recipe.IsSame(_ingridients);
-                Debug.Log($"hola {isRecipeDone}");
+                if (recipe.Contains(_ingredients))
+                {
+                    validRecipes.Add(recipe);
+                }
+            }
+
+            if (validRecipes.Count == 0)
+            {
+                _ingredients.Clear();
+                print("No hay recipes con estos ingredientes");
+                return;
+            }
+            
+            foreach (var recipe in validRecipes) 
+            {
+                bool isRecipeDone = recipe.IsSame(_ingredients);
                 if (isRecipeDone)
                 {
                     Instantiate(recipe.result, transform.position + Vector3.up, Quaternion.identity);
-                    Debug.Log("Recipe done");
+                    Debug.Log(recipe.name + " Is done");
+                    _ingredients.Clear();
+                    sopa.SetActive(false);
                 }
             }
         }

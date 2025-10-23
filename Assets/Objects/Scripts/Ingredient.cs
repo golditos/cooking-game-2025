@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 using UnityEngine.XR.Interaction.Toolkit;
@@ -7,8 +8,22 @@ using UnityEngine.XR.Interaction.Toolkit.Interactables;
 [CreateAssetMenu(fileName = "Ingredient", menuName = "Ingredient")]
 [Serializable] public class Ingredient : MonoBehaviour
 {
-    public EIngredient ingredientType;
-    public EIngredientState ingredientState;
+    
+    public class IngredientAll
+    {
+        public int Type;
+        public int State;
+
+        public IngredientAll(int type, int state)
+        {
+            Type = type;
+            State = state;
+        }
+    }
+    public List<IngredientAll> ingredientsAll = new List<IngredientAll>();
+    
+    EIngredient Type;
+    EIngredientState State;
     public GameObject ingredientPrefab;
     
     private XRGrabInteractable grabInteractable;
