@@ -1,53 +1,55 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
-[CreateAssetMenu(fileName = "Ingredient", menuName = "Ingredient")]
-[Serializable] public class Ingredient : MonoBehaviour
+public class Ingredient : MonoBehaviour
 {
-    
-    public class IngredientAll
-    {
-        public int Type;
-        public int State;
-
-        public IngredientAll(int type, int state)
-        {
-            Type = type;
-            State = state;
-        }
-    }
-    public List<IngredientAll> ingredientsAll = new List<IngredientAll>();
-    
-    EIngredient Type;
-    EIngredientState State;
-    public GameObject ingredientPrefab;
-    
+    public List<EIngredient> ingredientType;
+    public List<EIngredientState> ingredientState;
     private XRGrabInteractable grabInteractable;
     private void Awake()
     {
         grabInteractable = GetComponent<XRGrabInteractable>();
     }
-    
+    public ItemData GetItemData()
+    {
+        return new ItemData(ingredientType, ingredientState);
+    }
+}
+
+
+public class ItemData
+{
+    public List<EIngredient> Ingredients { get; private set; }
+    public List<EIngredientState> States { get; private set; }
+
+    public ItemData(List<EIngredient> ingredients, List<EIngredientState> states)
+    {
+        Ingredients = new List<EIngredient>(ingredients);
+        States = new List<EIngredientState>(states);
+    }
+
+    public bool Equals(ItemData other)
+    {
+        return Ingredients.SequenceEqual(other.Ingredients) &&
+               States.SequenceEqual(other.States);
+    }
 }
 public enum EIngredient
 {
-    None = 0, 
-    Seta = 1<<0,
-    Mano  = 1<<1,
-    Ojo   = 1<<2,
-    Baya = 1<<3,
-    Rata =  1<<4,
+    None, 
+    Seta,
+    Mano,
+    Ojo,
+    Baya,
+    Rata
 }
 
 public enum EIngredientState
 {
-    None = 0,
-    Cocinado = 1<<8,
-    Crudo = 1<<9,
-    Cortado = 1<<10,
-    NoCortado = 1<<11,
+    Cocinado,
+    Crudo
 }

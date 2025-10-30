@@ -7,30 +7,24 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewRecipe", menuName = "RecetaData")]
 public class RecetaData : ScriptableObject
 {
-    public class RecepieAll
+   
+    
+    public List<EIngredient> recipeIngredients;
+    public List<EIngredientState> recipeIngredientStates;
+    public GameObject result;
+    
+    public ItemData GetItemData()
     {
-        public int Type;
-        public int State;
-
-        public RecepieAll(int type, int state)
-        {
-            Type = type;
-            State = state;
-        }
+        return new ItemData(recipeIngredients, recipeIngredientStates);
     }
     
-    public List<RecepieAll> recepieall = new List<RecepieAll>();
     
-    public List<EIngredient> type = new();
-    public List<EIngredientState> state = new();
-    public GameObject result;
 
-    public bool IsSame(List<RecepieAll> ingredients) => recepieall.SequenceEqual(ingredients);
-
-    public bool Contains(List<RecepieAll> ingredients)
+    
+    public bool Contains(List<EIngredient> ingredients)
     {
-        var aux = new List<RecepieAll>(recepieall);
-        foreach (RecepieAll ingredient in ingredients)
+        var aux = new List<EIngredient>(ingredients);
+        foreach (EIngredient ingredient in ingredients)
         {
             if (aux.Contains(ingredient))
             {
@@ -44,5 +38,8 @@ public class RecetaData : ScriptableObject
 
         return true;
     }
+
+    public bool IsSame(List<EIngredient> ingridients) => recipeIngredients.SequenceEqual(ingridients);
+    
     
 }
