@@ -10,7 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: df227c011e6540947b04eaa0e1c4e5c0, type: 3}
-  m_Name: Receta1
+  m_Name: NewRecipe
   m_EditorClassIdentifier: 
-  RecipeIngredients: 0100000001000000
-  result: {fileID: 8964949284542106965, guid: ff67ea135d49c0242a7edc8ba6acb807, type: 3}
+  recipeIngredients: 01000000
+  recipeIngredientStates: 00000000
+  result: {fileID: 1210459693873458, guid: d8ebd34c38d3d0a40b5422c0fd136471, type: 3}

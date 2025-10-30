@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Objects
 {
-    public class GameManager  : MonoBehaviour
+    public class GameManager : MonoBehaviour
     {
         public static GameManager instance { get; private set; }
 

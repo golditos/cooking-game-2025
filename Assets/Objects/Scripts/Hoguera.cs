@@ -13,8 +13,8 @@ namespace Objects
         public ParticleSystem fireParticles;
         public SphereCollider sphereCollider;
         public GameObject sopa;
-
-        private List<EIngridient> _ingridients = new();
+        
+        private List<EIngredient> _ingredients = new();
 
         private void Awake()
         {
@@ -37,8 +37,11 @@ namespace Objects
 
             if (isFireActivated) fireParticles.Play();
             else fireParticles.Stop();
-        }
+            
+            if (isFireActivated) CheckRecipes();
 
+        }
+        
         private void OnTriggerEnter(Collider other)
         {
             Ingredient ingredient;
@@ -47,10 +50,9 @@ namespace Objects
                 Debug.Log("Collision with Pot is not Ingridient");
                 return;
             }
-            
-            Debug.Log($"Collision with Pot is {ingredient.ingridientType}");
-        
-            _ingridients.Add(ingredient.ingridientType);
+
+            Debug.Log($"Collision with Pot is {ingredient.ingredientType} & {ingredient.ingredientState}");
+            _ingredients.Add(ingredient.ingredientType);
             
             var grab = other.GetComponent<XRGrabInteractable>();
             if (grab && grab.isSelected)
@@ -61,18 +63,42 @@ namespace Objects
             Destroy(other.gameObject);
             sopa.SetActive(true);
 
-            CheckRecipes();
+            if (isFireActivated) CheckRecipes();
+
         }
 
         private void CheckRecipes()
         {
             var Recipes = GameManager.instance?.recipes;
+            if (Recipes == null) return;
+            
+            List<RecetaData> validRecipes = new();
+            
+            Debug.Log("Recipes: " + Recipes);
             foreach (var recipe in Recipes)
             {
-                bool isRecipeDone = recipe.IsSame(_ingridients);
+                if (recipe.Contains(_ingredients))
+                {
+                    validRecipes.Add(recipe);
+                }
+            }
+
+            if (validRecipes.Count == 0)
+            {
+                _ingredients.Clear();
+                print("No hay recipes con estos ingredientes");
+                return;
+            }
+            
+            foreach (var recipe in validRecipes)
+            {
+                bool isRecipeDone = recipe.IsSame(_ingredients);
                 if (isRecipeDone)
                 {
+                    Debug.Log(recipe.name + " Is done with the result: " + recipe.result.name);
                     Instantiate(recipe.result, transform.position + Vector3.up, Quaternion.identity);
+                    _ingredients.Clear();
+                    sopa.SetActive(false);
                 }
             }
         }

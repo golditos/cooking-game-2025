@@ -1,21 +1,53 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
 public class Ingredient : MonoBehaviour
 {
-    public EIngridient ingridientType;
-    public EIngridientState ingridientState;
+    public EIngredient ingredientType;
+    public EIngredientState ingredientState;
     private XRGrabInteractable grabInteractable;
+    private EType type = EType.Ingrediente;
     private void Awake()
     {
         grabInteractable = GetComponent<XRGrabInteractable>();
     }
+    public ItemData GetItemData()
+    {
+        return new ItemData(ingredientType, ingredientState, type);
+    }
 }
 
 
-public enum EIngridient
+public class ItemData
+{
+    public EIngredient Ingredient { get; private set; }
+    public EIngredientState State { get; private set; }
+    public EType Type { get; private set; }
+
+    public ItemData(EIngredient ingredient, EIngredientState state, EType type)
+    {
+        Type = type;
+        Ingredient = ingredient;
+        State = state;
+    }
+
+    public bool Equals(ItemData other)
+    {
+        return Ingredient == other.Ingredient && State == other.State;
+    }
+}
+
+public enum EType
+{
+    Ingrediente, 
+    Receta
+}
+
+public enum EIngredient
 {
     None, 
     Seta,
@@ -25,8 +57,9 @@ public enum EIngridient
     Rata
 }
 
-public enum EIngridientState
+public enum EIngredientState
 {
-    Cocinado = 1<<0,
-    Crudo = 1<<1,
+    Crudo,
+    Seco,
+    Cortado
 }
