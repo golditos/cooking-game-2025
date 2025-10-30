@@ -13,14 +13,6 @@ public class RecetaData : ScriptableObject
     public List<EIngredientState> recipeIngredientStates;
     public GameObject result;
     
-    public ItemData GetItemData()
-    {
-        return new ItemData(recipeIngredients, recipeIngredientStates);
-    }
-    
-    
-
-    
     public bool Contains(List<EIngredient> ingredients)
     {
         var aux = new List<EIngredient>(ingredients);
