@@ -20,9 +20,10 @@ public class Knife : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        var oc = other.GetComponent<ObjectCortable>();
-        if (!oc) return;
         
+        Debug.Log("Trigger con: " + other.name); 
+        var oc = other.GetComponentInParent<ObjectCortable>();
+        if (!oc) return;
 
         oc.cutSelf();
     }

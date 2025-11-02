@@ -14,7 +14,12 @@ public class Ingredient : MonoBehaviour
     private void Awake()
     {
         grabInteractable = GetComponent<XRGrabInteractable>();
+    
+        var childColliders = transform.GetChild(0).GetComponentsInChildren<Collider>();
+        grabInteractable.colliders.Clear();
+        foreach (var col in childColliders) grabInteractable.colliders.Add(col);
     }
+
     public ItemData GetItemData()
     {
         return new ItemData(ingredientType, ingredientState, type);

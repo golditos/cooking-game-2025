@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5768217474902006723}
   - component: {fileID: 5291614888162404058}
   m_Layer: 0
-  m_Name: Baya
+  m_Name: Baya_model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

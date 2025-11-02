@@ -861,7 +861,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a6bdf890c084464f8c020c873d7d6c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bayaModel: {fileID: 6985827714027446388, guid: af25959f63f828e4e950aa4069a15e3a, type: 3}
+  bayaModel: {fileID: 523973150765942008, guid: 00f0e8f63e66e6747b2c3c7fa83f7102, type: 3}
 --- !u!4 &8870674484960055946 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0411bd6aadc2c3b4ba7c17ab1a24c918, type: 3}
