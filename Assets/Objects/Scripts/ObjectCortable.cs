@@ -26,5 +26,8 @@ public class ObjectCortable : MonoBehaviour
             var newColliders = nuevo.GetComponentsInChildren<Collider>();
             foreach (var col in newColliders) grab.colliders.Add(col);
         }
+        
+        var ingredient = GetComponent<Ingredient>();
+        if (ingredient) ingredient.ingredientState = EIngredientState.Cortado;
     }
 }
