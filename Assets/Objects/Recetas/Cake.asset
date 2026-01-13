@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df227c011e6540947b04eaa0e1c4e5c0, type: 3}
   m_Name: Cake
   m_EditorClassIdentifier: 
-  recipeIngredients: 010000000300000004000000
+  recipeIngredients: 010000000500000004000000
   recipeIngredientStates: 000000000000000000000000
-  result: {fileID: 0}
+  result: {fileID: 4657459771931876702, guid: 2f851db00e2d81e47a8f599045736b98, type: 3}

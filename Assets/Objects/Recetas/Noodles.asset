@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df227c011e6540947b04eaa0e1c4e5c0, type: 3}
   m_Name: Noodles
   m_EditorClassIdentifier: 
-  recipeIngredients: 
-  recipeIngredientStates: 
-  result: {fileID: 0}
+  recipeIngredients: 010000000400000002000000
+  recipeIngredientStates: 000000000000000000000000
+  result: {fileID: 2504678989539284050, guid: dda05a7fec0b11f4d93e37aa85636326, type: 3}

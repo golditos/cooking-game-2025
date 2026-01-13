@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df227c011e6540947b04eaa0e1c4e5c0, type: 3}
   m_Name: Chicken
   m_EditorClassIdentifier: 
-  recipeIngredients: 
-  recipeIngredientStates: 
-  result: {fileID: 0}
+  recipeIngredients: 020000000500000004000000
+  recipeIngredientStates: 000000000000000000000000
+  result: {fileID: 6985393758245466462, guid: 532cce50dfe00bd49ac37663a4e7bfc5, type: 3}

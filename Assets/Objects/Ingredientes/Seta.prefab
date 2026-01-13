@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: forestpack_foliage_mushroom_red_small
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 44b03eaa872f141408d84aad99e0175f, type: 3}
+      propertyPath: m_TagString
+      value: Ingredient
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 44b03eaa872f141408d84aad99e0175f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -173,6 +177,10 @@ PrefabInstance:
       propertyPath: cuttedObject
       value: 
       objectReference: {fileID: 919132149155446097, guid: f4a58327263ac924bac9ccec6b08106b, type: 3}
+    - target: {fileID: 8814623794208225463, guid: 8857356bbfb501345864502c0763d971, type: 3}
+      propertyPath: ingredientType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9163880765693128043, guid: 8857356bbfb501345864502c0763d971, type: 3}
       propertyPath: m_Name
       value: Seta
@@ -184,8 +192,39 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1836935936207581206, guid: 8857356bbfb501345864502c0763d971, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2416444989455658556}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 9163880765693128043, guid: 8857356bbfb501345864502c0763d971, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8534760547035263386}
   m_SourcePrefab: {fileID: 100100000, guid: 8857356bbfb501345864502c0763d971, type: 3}
+--- !u!1 &1122799008850596933 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9163880765693128043, guid: 8857356bbfb501345864502c0763d971, type: 3}
+  m_PrefabInstance: {fileID: 8122346101985458478}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &8534760547035263386
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1122799008850596933}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.05
+  m_Height: 0.22
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.1, z: 0}
 --- !u!4 &7621855554231748920 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1836935936207581206, guid: 8857356bbfb501345864502c0763d971, type: 3}

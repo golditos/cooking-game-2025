@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df227c011e6540947b04eaa0e1c4e5c0, type: 3}
   m_Name: Octopus
   m_EditorClassIdentifier: 
-  recipeIngredients: 
-  recipeIngredientStates: 
-  result: {fileID: 0}
+  recipeIngredients: 020000000500000005000000
+  recipeIngredientStates: 000000000000000000000000
+  result: {fileID: 919132149155446097, guid: 186fe4cbf26a3fb4bad02734a2dc899e, type: 3}
